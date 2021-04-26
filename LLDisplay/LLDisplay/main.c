@@ -53,9 +53,25 @@ int rCount(struct Node *p) {
     return rCount(p->next) + 1;
 }
 
+int sum(struct Node *p) {
+    int sum = 0;
+    while (p != 0) {
+        sum+=p->data;
+        p = p->next;
+    }
+    return sum;
+}
+
+int rSum(struct Node *p) {
+    if (p == NULL) {
+        return 0;
+    }
+    return rSum(p->next) + p->data;
+}
+
 int main(int argc, const char * argv[]) {
-    int A[] = {3,5,7,10,15};
+    int A[] = {3,5,7,10,16};
     create(A, 5);
-    printf("%d \n", rCount(first));
+    printf("%d \n", rSum(first));
     return 0;
 }
