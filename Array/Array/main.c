@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 struct Array
 {
@@ -106,10 +107,41 @@ int RBinarySearch(int a[], int l, int h, int key)
     return -1;
 }
 
+void Reverse(struct Array *arr)
+{
+    int *B;
+    int i, j;
+    
+    B = (int *)malloc(arr->length * sizeof(int));
+    
+    for(i = arr->length - 1, j = 0; i >= 0; i--, j++)
+    {
+        B[j] = arr->A[i];
+    }
+    
+    for(i = 0; i < arr->length; i++)
+    {
+        arr->A[i] = B[i];
+    }
+}
+
+void Reverse2(struct Array *arr)
+{
+    int i, j;
+    
+    for(i = 0, j = arr->length - 1; i < j; i++, j--)
+    {
+        int temp = arr->A[i];
+        arr->A[i] = arr->A[j];
+        arr->A[j] = temp;
+    }
+}
+
 int main(int argc, const char * argv[]) {
     
     struct Array arr = {{2,4,7,8,9}, 10, 5};
     Insert(&arr, 3, 100);
+    Reverse2(&arr);
     Display(arr);
     printf("\nlinear search %d\n", BinarySearch(arr, 9));
     
