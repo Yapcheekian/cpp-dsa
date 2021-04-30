@@ -13,6 +13,33 @@ void Insert(int H[], int n)
     H[i] = temp;
 }
 
+int Delete(int A[], int n)
+{
+    int i, j, x, temp, val;
+    val = A[1];
+    x = A[n];
+    A[1] = A[n];
+    i = 1;
+    j = i * 2;
+    while(j < n - 1)
+    {
+        if(A[j + 1] > A[j])
+            j = j + 1;
+        if(A[i] < A[j])
+        {
+            temp = A[i];
+            A[i] = A[j];
+            A[j] = temp;
+            i = j;
+            j = j * 2;
+        }
+        else
+            break;
+    }
+    
+    return val;
+}
+
 int main(int argc, const char * argv[]) {
     
     int H[] = {0,10,20,30,25,5,40,35};
